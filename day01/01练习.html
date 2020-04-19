@@ -3,26 +3,38 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>vue</title>
   </head>
   <body>
     <div id="app">
       <p>{{mas}}</p>
     </div>
 
-    <script src="../js/vue.min.js"></script>
+    <script src="js/vue.min.js"></script>
     <script>
-      const vm = new Vue({
-        el: "#app",
-        data: {
-          mas: "caozhen",
-        },
-      });
+      // 1..
       // const vm = new Vue({
+      //   el: "#app",
       //   data: {
-      //     mas: "曹震",
+      //     mas: "caozhen",
       //   },
-      // }).$mount("#app");
+      // });
+
+      //2..
+      // const vm = new Vue({
+      //   // el: "#app",
+      //   data: {
+      //     mas: "caozhen",
+      //   },
+      // });
+      // vm.$mount("#app");
+
+      //3..
+      const vm = new Vue({
+        data: {
+          mas: "曹震",
+        },
+      }).$mount("#app");
     </script>
   </body>
 </html>

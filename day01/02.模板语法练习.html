@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>模板语法</title>
+  </head>
+  <body>
+    <div id="box">
+      <h2>双大括号表达式</h2>
+      <p>{{content}}</p>
+
+      <h2>指令一 强制数据绑定</h2>
+      <a v-bind:href="url">我的git仓库</a>
+      <a :href="url">我的git仓库</a>
+
+      <h2>指令二：绑定事件监听</h2>
+      <button v-on:click="showMsg">按钮v-on:click</button>
+      <button @click="showMsg">按钮@click</button>
+
+      <input type="text" @input="handleInput" />
+      <input type="text" @change="handleChange" />
+    </div>
+
+    <script src="js/vue.min.js"></script>
+    <script>
+      const vm = new Vue({
+        data: {
+          content: "曹震",
+          url: "https://github.com/caozhenzuishuai/Classczvue.git",
+        },
+        methods: {
+          showMsg: function (event) {
+            console.log("hello caozhen");
+          },
+          handleInput(event) {
+            console.log(event.target.value);
+            console.log("input事件触发");
+          },
+          handleChange(event) {
+            console.log(this);
+            console.log("change事件触发");
+          },
+        },
+      }).$mount("#box");
+    </script>
+  </body>
+</html>
