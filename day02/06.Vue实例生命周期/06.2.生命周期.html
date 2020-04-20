@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>生命周期</title>
+  </head>
+  <body>
+    <div id="box">
+      <p :style="{opacity:opacity}">Vue学不会怎么办？</p>
+      <button @click="godie">学不会就那样呗</button>
+    </div>
+
+    <script src="../../js/vue.js"></script>
+    <script>
+      new Vue({
+        data: {
+          opacity: 0,
+          timeId: null,
+        },
+        methods: {
+          godie() {
+            this.$destroy();
+          },
+        },
+        created() {
+          this.timeId = setInterval(() => {
+            let opacity = this.opacity;
+            opacity += 0.01;
+            if (opacity >= 1) {
+              opacity = 0;
+            }
+            this.opacity = opacity;
+            console.log("setInterval()");
+          }, 1000 / 60);
+        },
+        beforeDestroy() {
+          clearInterval(this.timeId);
+        },
+      }).$mount("#box");
+    </script>
+  </body>
+</html>

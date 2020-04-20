@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>列表渲染</title>
+  </head>
+
+  <body>
+    <div id="box">
+      <h2>v-for 遍历数组</h2>
+      <ul>
+        <li v-for="(person,index) in persons" :key="person.id">
+          {{person.id}}--{{person.name}}--{{person.age}}--{{index}}
+        </li>
+      </ul>
+      <h2>v-for 遍历对象</h2>
+      <ul>
+        <li v-for="(value,key) in person" :key="key">
+          {{key}}--{{value}}
+        </li>
+      </ul>
+    </div>
+    <script src="../../js/vue.js"></script>
+    <script>
+      new Vue({
+        data: {
+          persons: [
+            { id: 1, name: "cz1", age: 20 },
+            { id: 2, name: "cz2", age: 20 },
+            { id: 3, name: "cz3", age: 20 },
+            { id: 4, name: "cz4", age: 20 },
+          ],
+          person: { id: 1, name: "cz1", age: 20 },
+        },
+      }).$mount("#box");
+    </script>
+  </body>
+</html>

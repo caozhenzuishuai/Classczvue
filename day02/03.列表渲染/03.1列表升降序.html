@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>列表升降序</title>
+  </head>
+  <body>
+    <div id="box">
+      <input type="text" placeholder="名称" v-model="searchName" />
+      <ul>
+        <li v-for="(persons) in filterPersons" :key="persons.id">
+          {{persons.id}}--{{persons.name}}--{{persons.age}}--{{persons.index}}
+        </li>
+      </ul>
+      <button @click="selecOrder(1)">升序</button>
+      <button @click="selecOrder(2)">降序</button>
+      <button @click="selecOrder(0)">还原</button>
+    </div>
+    <script src="../../js/vue.js"></script>
+    <script>
+      new Vue({
+        data: {
+          searchName: "",
+          orderType: 0,
+          persons: [
+            { id: 1, name: "cz1", age: 20 },
+            { id: 2, name: "cz2", age: 21 },
+            { id: 3, name: "cz3", age: 18 },
+            { id: 4, name: "cz4", age: 23 },
+          ],
+        },
+        methods: {
+          selecOrder(orderType) {
+            this.orderType = orderType;
+          },
+        },
+        computed: {
+          filterPersons() {
+            const { persons, searchName, orderType } = this;
+            const filterPersons = persons.filter((person, index, persons) => {
+              return person.name.indexOf(searchName) > -1;
+            });
+            switch (orderType) {
+              case 1:
+                // 升序
+                filterPersons.sort((p1, p2) => {
+                  // 根据年龄排序
+                  return p1.age - p2.age;
+                });
+                break;
+              case 2:
+                // 降序
+                filterPersons.sort((p1, p2) => {
+                  // 根据年龄排序
+                  return p2.age - p1.age;
+                });
+                break;
+            }
+            return filterPersons;
+          },
+        },
+      }).$mount("#box");
+    </script>
+  </body>
+</html>

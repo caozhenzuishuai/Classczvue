@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>条件渲染</title>
+  </head>
+  <body>
+    <div id="box">
+      <p v-if="c">ccc</p>
+      <!-- 
+          如果v-if是true就显示v-else隐藏
+          如果false,v-else显示，v-if隐藏 
+        -->
+      <p v-else>zzz</p>
+      <hr />
+      <p v-if="c">cccc</p>
+      <p v-else-if="z">zzzz</p>
+      <p v-else>aaaa</p>
+      <hr />
+
+      <p v-show="c">ccc~~</p>
+      <p v-show="!c">zzz~~</p>
+
+      <buctton @click="c=!c">切换c</buctton>
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script>
+      new Vue({
+        data: {
+          c: false,
+          z: false,
+        },
+      }).$mount("#box");
+    </script>
+  </body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>事件处理</title>
+  </head>
+
+  <body>
+    <div id="box">
+      <h2>绑定监听</h2>
+
+      <button @click="showmsg1">按钮1</button>
+      <button @click="showmsg2('hello','cao','zhen')">按钮2</button>
+      <button @click="showmsg3('hello',$event)">按钮3</button>
+      <button @click="orderType = 1">按钮4</button>
+      <button @click="orderType = 2">按钮5</button>
+
+      <h2>事件修饰符</h2>
+      <a
+        href="https://github.com/caozhenzuishuai/Classczvue.git"
+        @click.prevent="test1"
+        >测试a标签</a
+      >
+
+      <div
+        :style="{width:'300px', height :'300px',backgroundColor:'red'}"
+        @click="test2"
+      >
+        <div
+          :style="{width:'200px' ,height:'200px',backgroundColor:'pink'}"
+          @click="test3"
+        ></div>
+      </div>
+      <h2>按键修饰符</h2>
+      <input type="text" @keyup.13="test4" />
+      <input type="text" @keyup.enter="test4" />
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script>
+      new Vue({
+        data: {
+          orderType: 0,
+        },
+        methods: {
+          showmsg1(event) {
+            console.log(event);
+            console.log("按钮1");
+          },
+          showmsg2(msg, a, b) {
+            console.log(msg, a, b);
+            console.log("按钮2");
+          },
+          showmsg3(mag, event) {
+            console.log(mag, event);
+            console.log("按钮3");
+          },
+          test1(event) {
+            //阻止默认行为
+            // event.preventDefault();
+            console.log("a标签触发了");
+          },
+          test2() {
+            console.log("test2触发了");
+          },
+          test3(event) {
+            console.log("test3触发了");
+          },
+          test4(event) {
+            console.log("触发了enter");
+          },
+        },
+      }).$mount("#box");
+    </script>
+  </body>
+</html>
