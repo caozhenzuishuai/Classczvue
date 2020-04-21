@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>指令</title>
+  </head>
+  <body>
+    <div id="box">
+      <p>{{text}}</p>
+      <!-- v-text 只会当成文本解析 -->
+      <p v-text="text"></p>
+      <!-- v-html会解析html标签 -->
+      <p v-html="text"></p>
+
+      <button @click="test">按钮</button>
+      <p v-once="true">{{num}}</p>
+      <p v-once>{{num}}</p>
+
+      <input type="text" ref="xxx" />
+      <button @click="test1">按钮</button>
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script>
+      new Vue({
+        data: {
+          text: "<span>vue真好呢</span>",
+          num: 521,
+        },
+        methods: {
+          test() {
+            this.num++;
+          },
+          test1() {
+            console.log(this.$refs.xxx);
+            console.log(this.$refs.xxx.value);
+          },
+        },
+      }).$mount("#box");
+    </script>
+  </body>
+</html>

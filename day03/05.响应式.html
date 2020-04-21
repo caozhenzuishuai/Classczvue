@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>响应式</title>
+  </head>
+  <body>
+    <div id="box">
+      <p>{{msg}}</p>
+      <button @click="msg+='~~'">按钮</button>
+
+      <ul>
+        <li v-for="(value,key) in person">
+          {{key}}--{{value}}
+        </li>
+      </ul>
+      <button @click="person.age++">age+1</button>
+
+      <ul>
+        <li v-for="(person) in persons" :key="person.id">
+          {{person.id}} -- {{person.name}}
+        </li>
+      </ul>
+      <button @click="test">按钮</button>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+      new Vue({
+        data: {
+          msg: "hello caozhen",
+          person: {
+            name: "cz",
+            age: 20,
+          },
+          persons: [
+            { id: 1, name: "a" },
+            { id: 2, name: "b" },
+            { id: 3, name: "c" },
+            { id: 4, name: "d" },
+          ],
+        },
+        methods: {
+          test() {
+            this.persons = [{ id: 5, name: "e" }];
+          },
+        },
+      }).$mount("#box");
+    </script>
+  </body>
+</html>

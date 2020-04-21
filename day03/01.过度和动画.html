@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>过渡与动画</title>
+    <style>
+      .v-enter,
+      .v-leave-to {
+        opacity: 0;
+        transform: translateX(200px);
+      }
+      .v-enter-to,
+      .v-leave {
+        opacity: 1;
+        transform: rotateX(0);
+      }
+      .v-enter-active,
+      .v-leave-active {
+        transition: all 1s;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 
+          vue提供组件transition，专门用来做过度效果        
+        默认类名：
+          v-enter
+          v-enter-to
+          v-enter-active
+
+          v-leave
+          v-leave-to
+          v-leave-active
+       -->
+    <div id="box">
+      <transition>
+        <p v-if="isShow">Hello,cz</p>
+      </transition>
+
+      <button @click="isShow=!isShow">按钮</button>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+      new Vue({
+        data() {
+          return { isShow: true };
+        },
+      }).$mount("#box");
+    </script>
+  </body>
+</html>
