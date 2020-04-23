@@ -56,6 +56,7 @@ module.exports = {
           options: {
             limit: 10 * 1024,
             name: "static/media/[hash:10].[ext]",
+            esModule: false,
           },
         },
       },
@@ -103,4 +104,16 @@ module.exports = {
   },
   devtool: "cheap-module-source-map", //开发环境
   // devtool: "source-map", //生产环境
+  resolve: {
+    // 帮助webpack解析模块（打包的资源）
+    alias: {
+      // 配置文件路径别名
+      // 当你路径写 vue 实际上代表的路径 vue/dist/vue.esm.js
+      // 'vue$': "vue/dist/vue.esm.js",
+      "@": resolve("src"),
+      "@comps": resolve("src/components"),
+    },
+    // 自动补全文件扩展名
+    extensions: [".js", ".vue", ".json"],
+  },
 };
